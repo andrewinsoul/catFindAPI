@@ -24,7 +24,9 @@ class CatAPIController {
       res.status(200).send(
         {
           success: true,
-          data: sortedData.slice(0, noOfBreeds)
+          data: isNaN(noOfBreeds)
+            ? sortedData.slice(0)
+            : sortedData.slice(0, noOfBreeds)
         }
       );
     } catch (error) {
@@ -56,7 +58,9 @@ class CatAPIController {
       res.status(200).send(
         {
           success: true,
-          data: sortedData.slice(0, noOfBreeds)
+          data: isNaN(noOfBreeds)
+            ? sortedData.slice(0)
+            : sortedData.slice(0, noOfBreeds)
         }
       );
     } catch (error) {
@@ -88,7 +92,9 @@ class CatAPIController {
       res.status(200).send(
         {
           success: true,
-          data: sortedData.slice(0, noOfBreeds)
+          data: isNaN(noOfBreeds)
+            ? sortedData.slice(0)
+            : sortedData.slice(0, noOfBreeds)
         }
       );
     } catch (error) {
