@@ -1,4 +1,4 @@
-# CatFind API
+# sort-cat-breed-api
 
 CatFind API is a simple api that extends https://docs.thecatapi.com/ by including endpoints that allows you to fetch cat breeds in descending order that are more children_friendly, stranger_friendly and dog_friendly
 <p align="center"> 
