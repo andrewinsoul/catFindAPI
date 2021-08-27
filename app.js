@@ -8,6 +8,15 @@ dotenv.config();
 
 const app = express();
 
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', ['http://localhost:3000']);
+  res.header(
+    'Access-Control-Allow-Methods',
+    'GET'
+  );
+  next();
+});
+
 app.use('/api/v1', router);
 app.get('/', (req, res) => {
   res.status(200).send({
