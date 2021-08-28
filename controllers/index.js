@@ -6,7 +6,7 @@ import sortInDescendingOrder from '../utils';
  */
 class CatAPIController {
   /**
-   * @description - method that fetches breeds of cats that are most
+   * @description - method that sorts breeds of cats that are most
    * child friendly in descending order
    * @param {object} req - The request object
    * @param {object} res - The response object
@@ -41,7 +41,7 @@ class CatAPIController {
   }
 
   /**
-   * @description - method that fetches breeds of cats that are most
+   * @description - method that sorts breeds of cats that are most
    * stranger friendly in descending order
    * @param {object} req - The request object
    * @param {object} res - The response object
@@ -75,7 +75,7 @@ class CatAPIController {
   }
 
   /**
-   * @description - method that fetches breeds of cats that are most
+   * @description - method that sorts breeds of cats that are most
    * dog friendly in descending order
    * @param {object} req - The request object
    * @param {object} res - The response object

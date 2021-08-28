@@ -9,7 +9,11 @@ dotenv.config();
 const app = express();
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Origin',
+    process.env.NODE_ENV === 'development'
+      ? 'http://localhost:3000' : 'https://sort-cat.herokuapp.com'
+  );
   res.header(
     'Access-Control-Allow-Methods',
     'GET'
