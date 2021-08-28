@@ -11,8 +11,9 @@ const app = express();
 app.use((req, res, next) => {
   res.header(
     'Access-Control-Allow-Origin',
-    process.env.NODE_ENV === 'development'
-      ? 'http://localhost:3000' : 'https://sort-cat.herokuapp.com'
+    process.env.NODE_ENV === 'production'
+      ? 'https://sort-cat.herokuapp.com'
+      : 'http://localhost:3000'
   );
   res.header(
     'Access-Control-Allow-Methods',
