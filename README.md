@@ -1,6 +1,6 @@
-# CatFind API
+# sort-cat-breed-api
 
-CatFind API is a simple api that extends https://docs.thecatapi.com/ by including endpoints that allows you to fetch cat breeds in descending order that are more children_friendly, stranger_friendly and dog_friendly
+sort-cat-breed-api is a simple api that extends https://docs.thecatapi.com/ by including endpoints that allows you to sort cat breeds in descending order that are more children_friendly, stranger_friendly and dog_friendly
 <p align="center"> 
   <li><a href="#Hosted API">Link to hosted API</a></li>
   <li><a href="#Technologies Used">Technologies Used</a></li>
@@ -28,8 +28,8 @@ https://catapi666.herokuapp.com
 ## Installation
 
 ```bash
-1. Git clone this repository `https://github.com/andrewinsoul/catFindAPI.git`
-2. Change your directory by running the command: cd catFindAPI
+1. Git clone this repository `https://github.com/andrewinsoul/sort-cat-breed-api.git`
+2. Change your directory by running the command: cd sort-cat-breed-api
 3. Install all dependencies using `npm install`
 4. Create a .env file that contains THIRD_PARTY_API as shown in the env.sample file
 5. Start the app `npm start` for development
