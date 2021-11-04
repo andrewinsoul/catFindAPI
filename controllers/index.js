@@ -1,10 +1,14 @@
-import Axios from 'axios';
-import sortInDescendingOrder from '../utils';
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
+import CatApiServices from '../services';
+import Response from '../utils/responseUtil';
+
+const responseInstance = new Response();
 
 /**
  * @description cat api controller
  */
-class CatAPIController {
+class CatApiController {
   /**
    * @description - method that sorts breeds of cats that are most
    * child friendly in descending order
@@ -13,31 +17,14 @@ class CatAPIController {
    * @returns {object} - status code and server message
    */
   static async fetchChildFriendlyCatBreeds(req, res) {
-    try {
-      const { data } = await Axios.get(
-        process.env.THIRD_PARTY_API
-      ); // fetch data from 3rd party api
-
-      const noOfBreeds = req.query.no_of_breeds || 5;
-
-      const sortedData = sortInDescendingOrder(data, 'child_friendly');
-      res.status(200).send(
-        {
-          success: true,
-          data: isNaN(noOfBreeds)
-            ? sortedData.slice(0)
-            : sortedData.slice(0, noOfBreeds)
-        }
-      );
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json(
-        {
-          success: false,
-          error: 'encountered server error'
-        }
-      );
+    responseInstance.initRes(res);
+    const response = await CatApiServices.fetchChildFriendlyCatBreeds(
+      req.query.no_of_breeds || 5,
+    );
+    if (response.success) {
+      return responseInstance.onSuccess(200, response);
     }
+    return responseInstance.onFailure(500, response, 'Check your network');
   }
 
   /**
@@ -48,30 +35,14 @@ class CatAPIController {
    * @returns {object} - status code and server message
    */
   static async fetchStrangerFriendlyCatBreeds(req, res) {
-    try {
-      const { data } = await Axios.get(
-        process.env.THIRD_PARTY_API
-      ); // fetch data from 3rd party api
-      const noOfBreeds = req.query.no_of_breeds || 5;
-      const sortedData = sortInDescendingOrder(data, 'stranger_friendly');
-
-      res.status(200).send(
-        {
-          success: true,
-          data: isNaN(noOfBreeds)
-            ? sortedData.slice(0)
-            : sortedData.slice(0, noOfBreeds)
-        }
-      );
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json(
-        {
-          success: false,
-          error: 'encountered server error'
-        }
-      );
+    responseInstance.initRes(res);
+    const response = await CatApiServices.fetchStrangerFriendlyCatBreeds(
+      req.query.no_of_breeds || 5,
+    );
+    if (response.success) {
+      return responseInstance.onSuccess(200, response);
     }
+    return responseInstance.onFailure(500, response, 'Check your network');
   }
 
   /**
@@ -82,30 +53,51 @@ class CatAPIController {
    * @returns {object} - status code and server message
    */
   static async fetchDogFriendlyCatBreeds(req, res) {
-    try {
-      const { data } = await Axios.get(
-        process.env.THIRD_PARTY_API
-      ); // fetch data from 3rd party api
-      const noOfBreeds = req.query.no_of_breeds || 5;
-      const sortedData = sortInDescendingOrder(data, 'dog_friendly');
-
-      res.status(200).send(
-        {
-          success: true,
-          data: isNaN(noOfBreeds)
-            ? sortedData.slice(0)
-            : sortedData.slice(0, noOfBreeds)
-        }
-      );
-    } catch (error) {
-      console.log(error);
-      return res.status(500).json(
-        {
-          success: false,
-          error: 'encountered server error'
-        }
-      );
+    responseInstance.initRes(res);
+    const response = await CatApiServices.fetchDogFriendlyCatBreeds(
+      req.query.no_of_breeds || 5,
+    );
+    if (response.success) {
+      return responseInstance.onSuccess(200, response);
     }
+    return responseInstance.onFailure(500, response, 'Check your network');
+  }
+
+  /**
+   * @description - method that sorts breeds of cats that are most
+   * dog friendly in descending order
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   * @returns {object} - status code and server message
+   */
+  static ping(req, res) {
+    responseInstance.initRes(res);
+    return responseInstance.onSuccess(
+      200,
+      {},
+      'welcome to cat find API'
+    );
+  }
+
+  /**
+   * @description - method that sorts breeds of cats that are most
+   * dog friendly in descending order
+   * @param {object} req - The request object
+   * @param {object} res - The response object
+   * @returns {object} - status code and server message
+   */
+  static handleInvalidRoute(req, res) {
+    responseInstance.initRes(res);
+    return responseInstance.onFailure(
+      404,
+      {
+        errors: [
+          { error: 'invalid route/Method' }
+        ],
+        data: null,
+      },
+      'check the http METHOD and ENDPOINT'
+    );
   }
 }
-export default CatAPIController;
+export default CatApiController;

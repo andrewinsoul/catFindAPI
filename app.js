@@ -3,6 +3,7 @@ import 'babel-core/register';
 import express from 'express';
 import dotenv from 'dotenv';
 import router from './routes';
+import CatApiController from './controllers';
 
 dotenv.config();
 
@@ -23,17 +24,12 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v1', router);
+
 app.get('/', (req, res) => {
-  res.status(200).send({
-    status: 'success',
-    message: 'welcome to cat find API'
-  });
+  CatApiController.ping(req, res);
 });
 app.all('*', (req, res) => {
-  res.status(404).send({
-    status: 'error',
-    error: 'invalid route, not found'
-  });
+  CatApiController.handleInvalidRoute(req, res);
 });
 const port = parseInt(process.env.PORT, 10) || 8000;
 
